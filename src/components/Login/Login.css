@@ -1,0 +1,76 @@
+#login {
+    background-color: #3A3B55;
+    width: 100%;
+    height: 100vh;
+    color: #ffffff;
+}
+
+#login .errorText{
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+#login .signupDiv {
+    height: 40px;
+    padding: 20px 0px;
+    float: right;
+    margin-right: 25px;
+}
+
+#login .form {
+    width: 25%;
+}
+
+#login .linkButton{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#login .signupButton{
+    background: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 10px 30px;
+    margin-left: 20px;
+}
+
+#login .forminput{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#login .formDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-direction: column;
+    clear: both;
+    height: 70vh;
+}
+
+#login .inputbox{
+    background-color: #3A3B55;
+    color: #ffffff;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    height: 50px;
+    outline: none;
+    padding: 0px 15px;
+}
+
+#login .label {
+    margin-bottom: 10px;
+}
+
+#login .submitButton {
+    background: #09A79E;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    height: 47px;
+    padding: 0px 38px;
+}

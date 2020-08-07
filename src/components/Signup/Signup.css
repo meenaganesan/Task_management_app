@@ -1,0 +1,84 @@
+#signup {
+    background-color: #3A3B55;
+    width: 100%;
+    height: 100vh;
+    color: #ffffff;
+}
+
+#signup .errorText{
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+#signup .linkButton{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#signup .termsText {
+    font-size: 12px;
+    margin-top: 45px;
+}
+
+#signup .signupDiv {
+    height: 40px;
+    padding: 20px 0px;
+    float: right;
+    margin-right: 25px;
+}
+
+#signup .form {
+    width: 25%;
+}
+
+#signup .signupButton{
+    background: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 10px 30px;
+    margin-left: 20px;
+}
+
+#signup .forminput{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#signup .formDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-direction: column;
+    clear: both;
+    height: 70vh;
+}
+
+#signup .inputbox{
+    background-color: #3A3B55;
+    color: #ffffff;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    height: 40px;
+    outline: none;
+    padding: 0px 15px;
+}
+
+#signup .label {
+    margin-bottom: 10px;
+}
+
+#signup .submitButton {
+    background: #09A79E;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    height: 40px;
+    padding: 0px 38px;
+    margin-top: 15px;
+    color: #ffffff;
+    font-size: 12px;
+}
