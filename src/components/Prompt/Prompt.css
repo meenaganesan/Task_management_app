@@ -1,0 +1,66 @@
+#prompt {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 9;
+  background-color: rgba(0,0,0,.5);
+}
+
+#prompt .desc{
+  height: 50px;
+}
+
+#prompt .prompt-container {
+  margin: auto;
+  background-color:  #2B2C41;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.19);
+  border-radius: 4px;
+  padding: 20px;
+  border-radius: 3px;
+  color: #ffffff;
+}
+
+#prompt .bottom-block {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#prompt .cl-button {
+  opacity: .6;
+  color: #333;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-right: 20px;
+  background-color: #ddd;
+  width: 100px;
+  height: 35px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#prompt .confirm-button {
+  height: 35px;
+  width: 100px;
+  border-radius: 3px;
+  background-color: #C05945;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -4,6 +4,17 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup' 
 import sha512 from 'js-sha512'
 import '../Login/Login.css'
+import Auth from '../Auth'
+import {toast}  from 'react-toastify'
+
+const notifySuccess = (data) => {
+  toast.dismiss()
+  toast.success(data, { autoClose: true })
+}
+const notifyError = (data) => {
+  toast.dismiss()
+  toast.error(data, { autoClose: false })
+}
 
 const validationSchema = Yup.object({
 	email: Yup.string().email().required('Email ID is required'),
@@ -28,10 +39,12 @@ function Login (){
 			.then((response) => {return response.json()})
 			.then((result) => { 
 				if(result.errors) {
-
+					notifyError(result.errors)
 				} else {
 					window.localStorage.setItem('token', result.data.accessToken)
 					window.localStorage.setItem('userName', result.data.firstName+ ' ' + result.data.lastName)
+					Auth.authenticate()
+					notifySuccess('Login Succesfull')
 					return (
 						history.push('/dashboard/task')
 					)

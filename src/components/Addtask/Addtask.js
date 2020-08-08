@@ -2,7 +2,8 @@ import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import '../Addtask/Addtask.css'
-import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker"
+import {toast} from 'react-toastify'
  
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -15,10 +16,19 @@ const validationSchema = Yup.object({
   label: Yup.array().required('Label is required.')
 })
 
+const notifySuccess = (data) => {
+  toast.dismiss()
+  toast.success(data, { autoClose: true })
+}
+const notifyError = (data) => {
+  toast.dismiss()
+  toast.error(data, { autoClose: false })
+}
+
 function Addtask (props) {
 
   function cancel () {
-    props.onClose(false, {})
+    props.onClose('', undefined)
   }
 
   const {handleSubmit, handleChange, values, errors, setFieldValue} = useFormik({
@@ -46,12 +56,16 @@ function Addtask (props) {
         headers: {'Authorization': 'Bearer' +  window.localStorage.getItem('token'), 'Content-Type': 'application/json'},
         body: JSON.stringify(values)
       })
+      notifySuccess('Task added succesfully')
+      cancel()
     } else {
       fetch('https://task-management-rest-app.herokuapp.com/api/tasks/' + props.data._id, {
         method: 'PUT',
         headers: {'Authorization': 'Bearer' +  window.localStorage.getItem('token'), 'Content-Type': 'application/json'},
         body: JSON.stringify(values)
       })
+      notifySuccess('Task updated')
+      cancel()
     }
 		}
 	})
@@ -110,7 +124,7 @@ function Addtask (props) {
               <div className='mr-5'>
                 <input type='checkbox' name='label' value='3' checked={values.label.indexOf('3') > -1 ? true : false} onChange={handleChange}/>
                 <label htmlFor='label'>Change Request</label>
-                <input type='checkbox' name='backEnd' value='4' checked={values.label.indexOf('4') > -1 ? true : false} onChange={handleChange}/>
+                <input type='checkbox' name='label' value='4' checked={values.label.indexOf('4') > -1 ? true : false} onChange={handleChange}/>
                 <label>Back-end</label>
               </div>
               {errors.label ? <div className='errorText'>{errors.label}</div> : null} 
