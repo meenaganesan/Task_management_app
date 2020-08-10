@@ -38,8 +38,8 @@ const Dashboard = () => {
       headers: {'Authorization': 'Bearer' +  window.localStorage.getItem('token'), 'Content-Type': 'application/json'}
     })
       notifySuccess('Deleted Succesfully')
-      fetchTask()
       openOverlay('', undefined, '')
+      setTimeout(fetchTask(), 1500)
   }
 
   //state variables
