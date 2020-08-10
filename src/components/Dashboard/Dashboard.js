@@ -38,6 +38,7 @@ const Dashboard = () => {
       headers: {'Authorization': 'Bearer' +  window.localStorage.getItem('token'), 'Content-Type': 'application/json'}
     })
       notifySuccess('Deleted Succesfully')
+      fetchTask()
       openOverlay('', undefined, '')
   }
 
@@ -98,9 +99,7 @@ const Dashboard = () => {
         <div className='profile' onClick={openDropDown}>
           <div className='profileImg'></div>
           <div>{window.localStorage.getItem('userName')}</div>
-          <div className='logoutDiv' style={{visibility: showDropDown ? 'visible' : 'hidden'}}>
-            <div className='cursorPointer' onClick={logout}>Logout</div>
-          </div>
+          <button className='submitButton' onClick={logout}>Logout</button>
         </div>
         
       </div>
@@ -134,8 +133,8 @@ const Dashboard = () => {
                     <td className='td'>{item.priority === 1 ? 'High' : item.priority === 2 ? 'Medium' : 'Low'}</td>
                     <td className='td'>{item.type === 1 ? 'Task' : item.type === 2 ? 'Story' : 'Bug'}</td>
                     <td className='td'>{getData(item.label)}</td>
-                    <td className='td'><button className='transparentButton' onClick={ () => {openOverlay('addTask', item)}}>EDIT</button></td>
-                    <td className='td'><button className='transparentButton' onClick={ () => {openOverlay('prompt', undefined, item._id)}}>DELETE</button></td>
+                    <td className='td'><button className='transparentButton cursorPointer' onClick={ () => {openOverlay('addTask', item)}}>EDIT</button></td>
+                    <td className='td'><button className='transparentButton cursorPointer' onClick={ () => {openOverlay('prompt', undefined, item._id)}}>DELETE</button></td>
                   </tr>
                 )
               }) :

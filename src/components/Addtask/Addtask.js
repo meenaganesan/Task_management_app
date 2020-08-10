@@ -30,7 +30,8 @@ function Addtask (props) {
   function cancel () {
     props.onClose('', undefined)
   }
-
+  const data =  props.data ? props.data.label.map((element) => {return(element.toString())}) : ''
+  
   const {handleSubmit, handleChange, values, errors, setFieldValue} = useFormik({
     initialValues: props.data ? 
     {
@@ -39,36 +40,60 @@ function Addtask (props) {
       priority: props.data.priority,
       type: props.data.type.toString(),
       dueDate: props.data.dueDate,
-      label: props.data.label.toString()
+      label: data
 		} : {
       title:'',
       description:'',
       priority: 1,
-      type: 1,
+      type: '1',
       dueDate: new Date(),
       label: []
-		} ,
+    } ,
 		validationSchema,
-		onSubmit(values) {
+		onSubmit(values,{resetForm}) {
       if(props.type === 'add') {
         fetch('https://task-management-rest-app.herokuapp.com/api/tasks', {
         method: 'POST',
         headers: {'Authorization': 'Bearer' +  window.localStorage.getItem('token'), 'Content-Type': 'application/json'},
-        body: JSON.stringify(values)
+        body: JSON.stringify({...values, type: parseInt(values.type)})
       })
-      notifySuccess('Task added succesfully')
-      cancel()
+      .then((response) => {return response.json()})
+      .then((result) => {
+        if(result.error) {
+          notifyError(result.message)
+        } else {
+          notifySuccess('Task added succesfully')
+          resetForm({values: {
+            title:'',
+            description:'',
+            priority: 1,
+            type: '1',
+            dueDate: new Date(),
+            label: []
+          }})
+          cancel()
+        }
+      })
+      
     } else {
       fetch('https://task-management-rest-app.herokuapp.com/api/tasks/' + props.data._id, {
         method: 'PUT',
         headers: {'Authorization': 'Bearer' +  window.localStorage.getItem('token'), 'Content-Type': 'application/json'},
         body: JSON.stringify(values)
       })
-      notifySuccess('Task updated')
-      cancel()
+      .then((response) => {return response.json()})
+      .then((result) => {
+        if(result.error) {
+          notifyError(result.message)
+        } else {
+          notifySuccess('Task updated succesfully')
+          cancel()
+        }
+      })
     }
 		}
-	})
+  })
+  console.log(values)
   return(
     <div id='addTask'>
 			<div className='formDiv'>

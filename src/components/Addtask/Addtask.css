@@ -27,6 +27,7 @@
 
 #addTask .errorText{
 	font-size: 10px;
+	color: red;
 }
 
 #addTask .forminput{

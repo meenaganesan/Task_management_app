@@ -1,10 +1,20 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup' 
 import sha512 from 'js-sha512'
 import '../Signup/Signup.css'
+import Auth from '../Auth'
+import {toast}  from 'react-toastify'
 
+const notifySuccess = (data) => {
+  toast.dismiss()
+  toast.success(data, { autoClose: true })
+}
+const notifyError = (data) => {
+  toast.dismiss()
+  toast.error(data, { autoClose: false })
+}
 const validationSchema = Yup.object({
   firstName: Yup.string().required('First name is required'),
   lastName: Yup.string().required('Last name is required'),
@@ -12,7 +22,8 @@ const validationSchema = Yup.object({
 	password:  Yup.string().required('Password is required')
 })
 
-function Login (){
+function Signup (){
+	let history = useHistory()
 	const {handleSubmit, handleChange, values, errors} = useFormik({
 		initialValues: {
       firstName: '',
@@ -30,7 +41,15 @@ function Login (){
 			.then((response) => {return response.json()})
 			.then((result) => { 
 				if(result.errors) {
-
+					notifyError(result.errors)
+				} else{
+					window.localStorage.setItem('token', result.data.accessToken)
+					window.localStorage.setItem('userName', result.data.firstName+ ' ' + result.data.lastName)
+					Auth.authenticate()
+					notifySuccess('Login Succesfull')
+					return (
+						history.push('/dashboard/task')
+					)
 				}
 			})
 		}
@@ -75,4 +94,4 @@ function Login (){
     </div>
   )
 }
-export default Login;
+export default Signup;

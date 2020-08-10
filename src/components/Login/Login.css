@@ -8,6 +8,7 @@
 #login .errorText{
     font-size: 12px;
     margin-top: 5px;
+    color: red;
 }
 
 #login .signupDiv {
