@@ -40,15 +40,12 @@ function Signup (){
 			})
 			.then((response) => {return response.json()})
 			.then((result) => { 
-				if(result.errors) {
-					notifyError(result.errors)
+				if(result.error) {
+					notifyError(result.message)
 				} else{
-					window.localStorage.setItem('token', result.data.accessToken)
-					window.localStorage.setItem('userName', result.data.firstName+ ' ' + result.data.lastName)
-					Auth.authenticate()
-					notifySuccess('Login Succesfull')
+					notifySuccess('Account created successfully. Please login to your account. ')
 					return (
-						history.push('/dashboard/task')
+						history.push('/login')
 					)
 				}
 			})
